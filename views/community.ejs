@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/community.css">
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <div class="nav-logo">
+                <p>Pear Up</p>
+            </div>
+            <!-- Rm the links -->
+            <div class="nav-button">
+                <button class="btn" id="loginBtn">ADMIN</button>
+                <button class="btn white-btn" id="registerBtn">New APP!</button>
+            </div>
+            <div class="nav-menu-btn">
+                <i class="bx bx-menu"></i>
+            </div>
+        </nav>
+
+        <!-- Inserting the data -->
+
+        <% if (jobs.length !== 0) { %>
+            <div class="card-container">
+                <% for(let i = 0; i < jobs.length; i++) { %>
+                    <div class="card">
+                        <div class="card-header">
+                           <a href="<%= jobs[i].link %>" class="company-link">
+                                <%= jobs[i].company %>
+                            </a>        
+                        </div>
+                        <div class="card-description">
+                            <%= jobs[i].message %>
+                        </div>
+                        <div class="card-date">
+                            <!-- How do I fix the date object -->
+                            Applied on: <%= jobs[i].entryDate %>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        <% } else { %>
+            <p>No Data</p>
+        <% } %>
+</body>
+</html>
