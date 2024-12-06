@@ -94,29 +94,31 @@ app.post('/community', async (req, res) => {
 
 app.post('/admin', async (req, res) => {
     const login = req.body;
-    
-
-    
-
-    // building collection with ddb
-
-
-    // WHY DOES THIS NOT WORK . THE PROBLEM HAS TO BE IN TRYING TO COMPARE THE DATATYPES
-    
     const conn = await connect();
-    const correct = await conn.query('Select * FROM admins');
-    console.log("User Input " , login);
-    console.log("Database login" , correct)
-    if (correct.username === login.login && correct.password === login.password) {
-        console.log("You have successfully logged in");
-        res.render('admin'); 
-    } else {
-        console.log("The username or password is incorrect");
-        res.status(401).send("The username or password is incorrect"); 
+
+    const [admin] = await conn.query('SELECT * FROM admins');
+    const [appCount] = await conn.query('SELECT COUNT(*) as appCount FROM jobapps');
+    const [uniqueJobs] = await conn.query('SELECT COUNT(DISTINCT company) as uniqueJobs FROM jobapps');
+
+    console.log("User Input:", login.login, login.password);
+    console.log(login);
+    console.log("Database login:", admin.username, admin.password);
+    console.log(admin);
+
+    
+    
+    if (admin.username === login.login && admin.password === login.password) {
+        res.render('admin', { 
+            stats: {
+                appCount: appCount.appCount,
+                uniqueJobs: uniqueJobs.uniqueJobs
+                
+            }
+        });
+        return; // Ensure the function exits after rendering
     }
 
-
-    
+    res.status(401).send("The username or password is incorrect");
 });
 
 

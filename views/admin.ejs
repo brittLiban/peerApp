@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/admin.css">
 </head>
 <body>
     <div class="wrapper">
@@ -12,15 +13,26 @@
             <div class="nav-logo">
                 <p>Pear Up</p>
             </div>
-            <!-- Rm the links -->
             <div class="nav-button">
-                <button class="btn" id="loginBtn">ADMIN</button>
-                <button class="btn white-btn" id="registerBtn">New APP!</button>
+                
             </div>
             <div class="nav-menu-btn">
                 <i class="bx bx-menu"></i>
             </div>
         </nav>
+        <div class="dashboard-container">
+            <h1>Admin Dashboard</h1>
+            <div class="stats-box">
+                <div class="stat">
+                    <h2>Total Applications</h2>
+                    <p class="number"><%= stats.appCount %></p>
+                </div>
+                <div class="stat">
+                    <h2>Unique Companies</h2>
+                    <p class="number"><%= stats.uniqueJobs %></p>
+                </div>
+            </div>
+        </div>
     </div>
     
 </body>
