@@ -37,7 +37,4 @@ VALUES (
     'I love this job'
 );
 
-SELECT * FROM pearup;
-
-
 SELECT * FROM jobapps;
